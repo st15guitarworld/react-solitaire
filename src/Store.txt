@@ -1,0 +1,14 @@
+//The store of the data.
+{
+tableu[1-5]://5 difrent piles in the tablue each with a list of cards
+foundation[1-4]: // 4 diffrent foundations
+stock: //cards in the stock
+waste: //cards in the waste
+}
+
+When I move a card to a section of the board how do I know where to remove it from and where to add it to?
+need to know:
+1) what card it is im moving.i.e index of the card (this is done by using position)
+2) where the card is.ie tablue1,tableu2,stock,foundation1
+
+

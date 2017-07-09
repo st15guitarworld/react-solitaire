@@ -8,8 +8,8 @@ import './App.css';
 
 const mapStateToProps = (state,ownProps) => {
     return {
-    waste:state[Constants.WASTE],
-    stock:state[Constants.STOCK]
+    waste:state[Constants.GAME_BOARD].present[Constants.WASTE],
+    stock:state[Constants.GAME_BOARD].present[Constants.STOCK]
   }
 }
 
@@ -40,10 +40,8 @@ class WasteStock extends Component {
         this.stockClicked = this.stockClicked.bind(this);
     }
     stockClicked(event){
-        console.log(this.props.stock);
-        console.log(this.props.waste);
         if(this.props.stock.length === 0 ){
-    this.props.moveCardDispatcher(this.props.waste.slice(0),0,Constants.WASTE,Constants.STOCK);
+            this.props.moveCardDispatcher(this.props.waste.slice(0),0,Constants.WASTE,Constants.STOCK);
         }else{
              this.props.moveCardDispatcher(this.props.stock.slice(this.props.stock.length-1),this.props.stock.length-1,Constants.STOCK,Constants.WASTE);
         }
@@ -64,6 +62,7 @@ class WasteStock extends Component {
                 width:Constants.CARD_WIDTH+'px',
                 border:'2px solid black',
                 borderRadius:'5px',
+                cursor:"pointer"
             }} onClick={(e)=>this.stockClicked(e)}>
            
             <img src="/refresh_icon.png" width="47px" height="47px" style={{position:'absolute',

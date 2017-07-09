@@ -18,7 +18,7 @@ var tableauBackGroundStyle = {
 
 const mapStateToProps = (state,ownProps) => {
     return {
-    cards:state[ownProps.type]
+    cards:state[Constants.GAME_BOARD].present[ownProps.type]
   }
 }
 

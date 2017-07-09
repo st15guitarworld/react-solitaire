@@ -3,6 +3,7 @@ export default {
    CARD_WIDTH:80,
    CARD_HEIGHT:115,
    CARD_BACK:'/cards/back.png',
+   GAME_BOARD:'board',
     
    WASTE:'WASTE',
    STOCK:'STOCK',

@@ -164,14 +164,15 @@ class DraggableCard extends Component {
     });
   }
     render(){
-        const { canDrag,isDragging, connectDragSource, connectDropTarget} = this.props;
+        const { canDrag,isDragging, connectDragSource, connectDropTarget,isDraggable,type} = this.props;
         return connectDropTarget(connectDragSource(
             <span style={{
             position:'absolute',
             top:this.props.offset_top,
             width:Constants.CARD_WIDTH+"px",
             height:Constants.CARD_HEIGHT +"px",
-            opacity:isDragging ? '0':'1'
+            opacity:isDragging ? '0':'1',
+            cursor:isDraggable || type === Constants.STOCK ? "pointer" : "auto"
            }}>
                 <img src={this.props.isShowing ? this.props.image : Constants.CARD_BACK} width={Constants.CARD_WIDTH+"px"} height={ Constants.CARD_HEIGHT +"px"}></img>
            </span>

@@ -1,6 +1,7 @@
-import {FETCH_CARDS,FETCH_CARDS_SUCCESS,FETCH_CARDS_ERROR, MOVE_CARDS} from '../actions/Actions';
+import {MOVE_CARDS,INCREMENT_MOVES}from '../actions/Actions';
 import initializeState from '../stateInitializer';
-
+import undoable, { distinctState } from 'redux-undo';
+import { combineReducers } from 'redux';
 var initialState = initializeState();
 
 function setCardValues(cards,obj) {
@@ -9,23 +10,43 @@ return cards.map(card => {
     });
 }
 
-export default function solitaireApp(state = initialState,action) {
+function moves(state=0,action){
+    switch(action.type){
+            case INCREMENT_MOVES:
+            return state + 1;
+        default:
+            return state;
+    }
+}
+
+function board(state = initialState,action) {
     switch (action.type) {
     case MOVE_CARDS:
             if(action.fromId === action.toId){
                 return state;
             }
-        let newProps = {};
-        newProps[action.fromId] = state[action.fromId].slice(0,action.position);
-        var lastCard = newProps[action.fromId][newProps[action.fromId].length-1];
+        let newState = JSON.parse(JSON.stringify(state));
+        newState[action.fromId] = JSON.parse(JSON.stringify(state[action.fromId].slice(0,action.position)));
+        var lastCard = newState[action.fromId][newState[action.fromId].length-1];
         if(lastCard){
         lastCard.isDraggable=true;
         lastCard.isShowing=true;    
         }   
-        newProps[action.toId] = state[action.toId].concat(action.cards);
-        return Object.assign({}, state,newProps);
+        newState[action.toId] = JSON.parse(JSON.stringify(state[action.toId].concat(action.cards)));
+        return newState;
     default:
       return state;
 
     }
 };
+
+const undoableBoard = undoable(board,{
+    filter:distinctState()
+});
+
+const solitaireApp = combineReducers({
+    board:undoableBoard,
+    moves:moves
+});
+
+export default solitaireApp;

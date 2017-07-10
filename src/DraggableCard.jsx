@@ -78,7 +78,6 @@ const dropSpec = {
         
         // Obtain the dragged item
         const item = monitor.getItem();
-        console.log(props);
         props.moveCardDispatcher(item.cardPile,item.position,item.fromType,props.type);
         
     },
@@ -104,6 +103,7 @@ const dropSpec = {
         if(!props.isDraggable){
             candrop=false;
         }
+        
         let currentPile = props.getCardPile;
         
         if(!currentPile || props.position !== currentPile().length - 1){
@@ -174,7 +174,7 @@ class DraggableCard extends Component {
             opacity:isDragging ? '0':'1',
             cursor:isDraggable || type === Constants.STOCK ? "pointer" : "auto"
            }}>
-                <img src={this.props.isShowing ? this.props.image : Constants.CARD_BACK} width={Constants.CARD_WIDTH+"px"} height={ Constants.CARD_HEIGHT +"px"}></img>
+                <img src={this.props.isShowing ? this.props.image : Constants.CARD_BACK} width={Constants.CARD_WIDTH+"px"} height={ Constants.CARD_HEIGHT +"px"} draggable="false"></img>
            </span>
             ));
     }

@@ -65,7 +65,6 @@ const spec = {
         
         // Obtain the dragged item
         const item = monitor.getItem();
-        console.log(props);
         props.moveCardDispatcher(item.cardPile,item.position,item.fromType,props.type);
         
     },

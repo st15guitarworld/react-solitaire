@@ -23,6 +23,6 @@ export let deepCopyArray = (arr) => {
 
 export let setCardValues = (cards,properties) => {
   return cards.map(card => {
-        return Object.assign(card,obj)    
+        return Object.assign(card,properties)    
     });
 };

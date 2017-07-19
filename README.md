@@ -1,7 +1,7 @@
 # react-solitaire
-Online solitaire game using reactjs, redux and redux-undo.
+Online solitaire game using reactjs, react drag and drop, redux and redux-undo.
 
-Includes:
+Features Included:
 - Undo Moves
 - Move Counter
 - Game Timer
